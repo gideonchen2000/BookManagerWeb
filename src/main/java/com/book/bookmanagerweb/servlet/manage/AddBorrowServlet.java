@@ -32,6 +32,9 @@ public class AddBorrowServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        int sid = Integer.parseInt(req.getParameter("student"));
+        int bid = Integer.parseInt(req.getParameter("book"));
+        service.addBorrow(sid, bid);
+        resp.sendRedirect("index");
     }
 }

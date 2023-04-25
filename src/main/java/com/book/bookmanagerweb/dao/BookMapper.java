@@ -1,9 +1,9 @@
 package com.book.bookmanagerweb.dao;
 
+import com.book.bookmanagerweb.entity.Book;
 import com.book.bookmanagerweb.entity.Borrow;
 import org.apache.ibatis.annotations.*;
 
-import java.awt.print.Book;
 import java.util.List;
 
 public interface BookMapper {

@@ -50,4 +50,12 @@ public class BookServiceImpl implements BookService {
             return mapper.getStudentList();
         }
     }
+
+    @Override
+    public void addBorrow(int sid, int bid) {
+        try (SqlSession sqlSession = MybatisUtil.getSession()){
+            BookMapper mapper = sqlSession.getMapper(BookMapper.class);
+            mapper.addBorrow(sid, bid);
+        }
+    }
 }
