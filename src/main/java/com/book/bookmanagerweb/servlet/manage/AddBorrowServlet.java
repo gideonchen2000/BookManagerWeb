@@ -1,7 +1,5 @@
-package com.book.bookmanagerweb.servlet.pages;
+package com.book.bookmanagerweb.servlet.manage;
 
-
-import com.book.bookmanagerweb.entity.User;
 import com.book.bookmanagerweb.service.BookService;
 import com.book.bookmanagerweb.service.impl.BookServiceImpl;
 import com.book.bookmanagerweb.utils.ThymeleafUtil;
@@ -14,8 +12,8 @@ import org.thymeleaf.context.Context;
 
 import java.io.IOException;
 
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/add-borrow")
+public class AddBorrowServlet extends HttpServlet {
 
     BookService service;
     @Override
@@ -27,10 +25,13 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Context context = new Context();
         resp.setCharacterEncoding("UTF-8");
-        User user = (User) req.getSession().getAttribute("user");
-        context.setVariable("nickname", user.getNickname());
-        context.setVariable("borrow_list", service.getBorrowList());
-        ThymeleafUtil.process("index.html", context, resp.getWriter());
+        context.setVariable("book_list", service.getActiveBookList());
+        context.setVariable("student_list", service.getStudentList());
+        ThymeleafUtil.process("add-borrow.html", context, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 }

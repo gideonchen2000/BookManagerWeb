@@ -1,4 +1,4 @@
-package com.book.bookmanagerweb.servlet;
+package com.book.bookmanagerweb.servlet.auth;
 
 import com.book.bookmanagerweb.service.UserService;
 import com.book.bookmanagerweb.service.impl.UserServiceImpl;

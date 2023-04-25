@@ -14,14 +14,10 @@ import org.thymeleaf.context.Context;
 
 import java.io.IOException;
 
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/books")
+public class BookServlet extends HttpServlet {
 
-    BookService service;
-    @Override
-    public void init() throws ServletException {
-        service = new BookServiceImpl();
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,8 +25,7 @@ public class IndexServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         User user = (User) req.getSession().getAttribute("user");
         context.setVariable("nickname", user.getNickname());
-        context.setVariable("borrow_list", service.getBorrowList());
-        ThymeleafUtil.process("index.html", context, resp.getWriter());
 
+        ThymeleafUtil.process("books.html", context, resp.getWriter());
     }
 }
