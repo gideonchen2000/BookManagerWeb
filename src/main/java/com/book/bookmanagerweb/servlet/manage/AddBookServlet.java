@@ -1,6 +1,5 @@
-package com.book.bookmanagerweb.servlet.pages;
+package com.book.bookmanagerweb.servlet.manage;
 
-import com.book.bookmanagerweb.entity.User;
 import com.book.bookmanagerweb.service.BookService;
 import com.book.bookmanagerweb.service.impl.BookServiceImpl;
 import com.book.bookmanagerweb.utils.ThymeleafUtil;
@@ -13,9 +12,8 @@ import org.thymeleaf.context.Context;
 
 import java.io.IOException;
 
-@WebServlet("/students")
-public class StudentServlet extends HttpServlet {
-
+@WebServlet("/add-book")
+public class AddBookServlet extends HttpServlet {
     BookService service;
     @Override
     public void init() throws ServletException {
@@ -24,11 +22,16 @@ public class StudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Context context = new Context();
-        resp.setCharacterEncoding("UTF-8");
-        User user = (User) req.getSession().getAttribute("user");
-        context.setVariable("nickname", user.getNickname());
-        context.setVariable("student_list", service.getStudentList());
-        ThymeleafUtil.process("students.html", context, resp.getWriter());
+        ThymeleafUtil.process("add-book.html", new Context(), resp.getWriter());
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String title = req.getParameter("title");
+        String desc = req.getParameter("desc");
+        double price = Double.parseDouble(req.getParameter("price"));
+        service.addBook(title, desc, price);
+        resp.sendRedirect("books");
     }
 }

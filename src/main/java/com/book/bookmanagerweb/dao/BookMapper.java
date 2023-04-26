@@ -27,7 +27,7 @@ public interface BookMapper {
     @Select("select * from book")
     List<Book> getBookList();
 
-    @Select("delete from book where bid = #{bid}")
+    @Delete("delete from book where bid = #{bid}")
     void deleteBook(int bid);
 
     @Insert("insert into book(title, `desc`, price) values(#{title}, #{desc}, #{price})")

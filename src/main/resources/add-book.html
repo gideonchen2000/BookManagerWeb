@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -90,7 +90,7 @@
             <div class="side-menu-wrap">
                 <ul class="main-menu">
                     <li>
-                        <a href="index">
+                        <a href="index" class="active">
                             <span class="icon-menu feather-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             </span>
@@ -111,7 +111,7 @@
                     </li>
 
                     <li>
-                        <a href="students" class="active">
+                        <a href="students">
                             <span class="icon-menu feather-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </span>
@@ -128,51 +128,67 @@
             <div class="main-content">
                 <!-- Page Title Start -->
                 <div class="row">
-                    <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-title-wrapper">
-                            <div class="page-title-box ad-title-box-use">
-                                <h4 class="page-title">学生リスト</h4>
+                            <div class="page-title-box">
+                                <h4 class="page-title">書籍情報を登録</h4>
+                            </div>
+                            <div class="breadcrumb-list">
+                                <ul>
+                                    <li class="breadcrumb-link">
+                                        <a href="javascript:void(0);"><i class="fas fa-home mr-2"></i>図書管理システム</a>
+                                    </li>
+                                    <li class="breadcrumb-link active">書籍情報を登録</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Table Start -->
-                <div class="row">
-                    <!-- Styled Table Card-->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card table-card">
-                            <div class="card-header pb-0">
-                                <h4>学生リスト</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-holder">
-                                    <div class="table-responsive">
-                                        <table class="table table-styled mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>学生番号</th>
-                                                <th>名前</th>
-                                                <th>性別</th>
-                                                <th>グレード</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="student : ${student_list}">
-                                                    <td th:text="'#'+${student.getSid()}"></td>
-                                                    <td th:text="${student.getName()}"></td>
-                                                    <td th:text="${student.getSex()}"></td>
-                                                    <td th:text="${student.getGrade()}+'年生'"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                <!-- From Start -->
+                <div class="from-wrapper">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>登録</h4>
+                                    <p class="card-desc">登録の情報を入力してください</p>
+                                </div>
+                                <div class="card-body">
+                                    <form class="separate-form" method="post" action="add-book">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h5 class="from-title mb-1">書籍情報</h5>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="member-name" class="col-form-label">書籍名称</label>
+                                                        <input class="form-control" type="text" placeholder="book title" id="member-name" name="title">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="member-email" class="col-form-label">書籍紹介</label>
+                                                        <input class="form-control" type="text" placeholder="describe" id="member-email" name="desc">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="company-name" class="col-form-label">価額</label>
+                                                        <input class="form-control" type="text" placeholder="price" id="company-name" name="price">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mb-0">
+                                                <button class="btn btn-primary" type="submit">登録</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-
-
                 <div class="ad-footer-btm">
                     <p>Copyright © 2021.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">网页模板</a></p>
                 </div>
